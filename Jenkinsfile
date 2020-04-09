@@ -7,24 +7,32 @@ node {
     }
     stage('Create Persistent Volume') {
       sh """
+          export AWS_ACCESS_KEY_ID=${aws_access_key_id}
+          export AWS_SECRET_ACCESS_KEY=${aws_secret_access_key}
           export KUBECONFIG=config
           kubectl create -f persistentVolume.yaml
          """
       }
     stage('Create the ConfigMap') {
       sh """
+          export AWS_ACCESS_KEY_ID=${aws_access_key_id}
+          export AWS_SECRET_ACCESS_KEY=${aws_secret_access_key}
           export KUBECONFIG=config
           kubectl create -f rds_conn_configmap.yaml
          """
       }
     stage('Create the Deployment') {
       sh """
+          export AWS_ACCESS_KEY_ID=${aws_access_key_id}
+          export AWS_SECRET_ACCESS_KEY=${aws_secret_access_key}
           export KUBECONFIG=config
           kubectl create -f deployment-wordpress.yaml
          """
       }
     stage('Create the LB Service') {
       sh """
+          export AWS_ACCESS_KEY_ID=${aws_access_key_id}
+          export AWS_SECRET_ACCESS_KEY=${aws_secret_access_key}
           export KUBECONFIG=config
           kubectl create -f service_wordpress.yaml
          """
