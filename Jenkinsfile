@@ -42,24 +42,32 @@ node {
    
     stage('Delete the LB Service') {
       sh """
+          export AWS_ACCESS_KEY_ID=${aws_access_key_id}
+          export AWS_SECRET_ACCESS_KEY=${aws_secret_access_key}
           export KUBECONFIG=config
           kubectl delete service/wordpress-service
          """
       }
     stage('Delete the Deployment') {
       sh """
+          export AWS_ACCESS_KEY_ID=${aws_access_key_id}
+          export AWS_SECRET_ACCESS_KEY=${aws_secret_access_key}
           export KUBECONFIG=config
           kubectl delete deployment/wordpress-deployment
          """
       }
     stage('Delete the ConfigMap') {
       sh """
+          export AWS_ACCESS_KEY_ID=${aws_access_key_id}
+          export AWS_SECRET_ACCESS_KEY=${aws_secret_access_key}
           export KUBECONFIG=config
           kubectl delete configmap/rds-conn
          """
       }
     stage('Delete the Persistent Volume') {
       sh """
+          export AWS_ACCESS_KEY_ID=${aws_access_key_id}
+          export AWS_SECRET_ACCESS_KEY=${aws_secret_access_key}
           export KUBECONFIG=config
           kubectl delete persistentvolumeclaim/wp-pv-claim
          """
