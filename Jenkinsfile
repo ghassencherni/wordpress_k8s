@@ -3,7 +3,7 @@ node {
 
   if(action == 'Deploy Wordpress') {
     stage('Getting "config" and "rds_conn_configmap.yaml"') {
-        copyArtifacts filter: 'rds_conn_configmap.yaml, config', fingerprintArtifacts: true, projectName: 'terraform_aws_eks', selector: upstream(fallbackToLastSuccessful: true)
+        copyArtifacts filter: 'rds_conn_configmap.yaml, config', fingerprintArtifacts: true, projectName: 'terraform_aws_eks', selector: lastSuccessful()
     }
     stage('Create Persistent Volume') {
       sh """
