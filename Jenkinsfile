@@ -37,7 +37,16 @@ node {
           kubectl create -f service_wordpress.yaml
          """
       }
+    stage('Get the LB wordpress URL') {
+      sh """
+          export AWS_ACCESS_KEY_ID=${aws_access_key_id}
+          export AWS_SECRET_ACCESS_KEY=${aws_secret_access_key}
+          export KUBECONFIG=config
+          kubectl get service/wordpress-service |  awk {'print $1" " $2 " " $4 " " $5'} | column -t
+         """
+      }
     }
+
   if(action == 'Destroy Wordpress') {
    
     stage('Delete the LB Service') {
@@ -72,7 +81,7 @@ node {
           kubectl delete persistentvolumeclaim/wp-pv-claim
          """
       }
-    }   
+   }
 
 }
 
