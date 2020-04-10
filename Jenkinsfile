@@ -3,10 +3,11 @@ node {
 
   if(action == 'Deploy Wordpress') {
     stage('Getting "config" and "rds_conn_configmap.yaml"') {
-        copyArtifacts filter: 'rds_conn_configmap.yaml, config', fingerprintArtifacts: true, projectName: 'terraform_aws_eks', selector: lastSuccessful()
+        copyArtifacts filter: 'rds_conn_configmap.yaml, config', fingerprintArtifacts: true, projectName: 'terraform_aws_eks', selector: upstream(fallbackToLastSuccessful: true)
     }
     stage('Create Persistent Volume') {
       sh """
+          /* AWS cridentials to manage EKS, we can use other solution and plugins to call aws_cridentials and store them in Jenkins */
           export AWS_ACCESS_KEY_ID=${aws_access_key_id}
           export AWS_SECRET_ACCESS_KEY=${aws_secret_access_key}
           export KUBECONFIG=config
@@ -42,7 +43,7 @@ node {
           export AWS_ACCESS_KEY_ID=${aws_access_key_id}
           export AWS_SECRET_ACCESS_KEY=${aws_secret_access_key}
           export KUBECONFIG=config
-          kubectl get service/wordpress-service |  awk {'print $1" " $2 " " $4 " " $5'} | column -t
+          kubectl get service/wordpress-service
          """
       }
     }
