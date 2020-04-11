@@ -16,7 +16,6 @@ spec:
       containers:
       - name: wordpress
         image: registry.gitlab.com/ghassencherni/ghassen-devopstt
-        #image: wordpress:4.8-apache
         envFrom:
         - configMapRef:
             name: rds-conn
