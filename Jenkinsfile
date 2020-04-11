@@ -36,6 +36,7 @@ node {
       }
     stage('Get the LB wordpress URL') {
       sh """
+          sleep 20
           export KUBECONFIG=config
           kubectl get service/wordpress-service
          """
