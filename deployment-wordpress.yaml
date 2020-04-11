@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: wordpress
-        name: registry.gitlab.com/ghassencherni/ghassendevops
+        image: registry.gitlab.com/ghassencherni/ghassen-devopstt
         #image: wordpress:4.8-apache
         envFrom:
         - configMapRef:
