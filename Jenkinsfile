@@ -1,7 +1,7 @@
 node {
 
   git 'https://github.com/ghassencherni/wordpress_k8s.git'
-  withCredentials([usernamePassword(credentialsId: 'aws_credential', usernameVariable: 'ACCESS_KEY', passwordVariable: 'SECRET_ACCESS')]) 
+  withCredentials([usernamePassword(credentialsId: 'aws_credentials', usernameVariable: 'ACCESS_KEY', passwordVariable: 'SECRET_ACCESS')]) 
 {
 
   if(action == 'Deploy Wordpress') {
