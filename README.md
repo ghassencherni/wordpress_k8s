@@ -17,4 +17,7 @@ This Jenkinsfile deploys wordpress cluster on EKS, it creates:
 - Create the Wordpress deployment ( images "ghassen-devopstt" are pulled from Gitlab Registry )
 
 
+## Author Information
+
+This script  was created by [Ghassen CHARNI](https://github.com/ghassencherni/)
 
