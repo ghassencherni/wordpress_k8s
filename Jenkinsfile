@@ -8,7 +8,7 @@ node {
     
 
     stage('Getting "config" and "rds_conn_configmap.yaml"') {
-      copyArtifacts filter: 'rds_conn_configmap.yaml, config', fingerprintArtifacts: true, projectName: 'terraform_aws_eks', selector: upstream(fallbackToLastSuccessful: true)
+      copyArtifacts filter: 'service_wordpress.yaml, rds_conn_configmap.yaml, config', fingerprintArtifacts: true, projectName: 'terraform_aws_eks', selector: upstream(fallbackToLastSuccessful: true)
     }
     stage('Create Persistent Volume') {
       sh """
