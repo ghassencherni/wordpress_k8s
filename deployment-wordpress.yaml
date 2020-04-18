@@ -16,6 +16,7 @@ spec:
       containers:
       - name: wordpress
         image: registry.gitlab.com/myartifakt/ghassen-devopstt
+        imagePullPolicy: Always
         envFrom:
         - configMapRef:
             name: rds-conn
