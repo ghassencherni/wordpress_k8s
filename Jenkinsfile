@@ -26,12 +26,12 @@ node {
           kubectl create -f rds_conn_configmap.yaml
          """
       }
-    stage('Create the Deployment') {
+    stage('Create/update the Deployment') {
       sh """
           export AWS_ACCESS_KEY_ID='$ACCESS_KEY'
           export AWS_SECRET_ACCESS_KEY='$SECRET_ACCESS'
           export KUBECONFIG=config
-          kubectl create -f deployment-wordpress.yaml
+          kubectl apply -f deployment-wordpress.yaml
          """
       }
     stage('Create the LB Service') {
