@@ -15,7 +15,7 @@ node {
           export AWS_ACCESS_KEY_ID='$ACCESS_KEY'
           export AWS_SECRET_ACCESS_KEY='$SECRET_ACCESS'
           export KUBECONFIG=config
-          kubectl create -f persistentVolume.yaml
+          kubectl apply -f persistentVolume.yaml
          """
       }
     stage('Create the ConfigMap') {
@@ -23,7 +23,7 @@ node {
           export AWS_ACCESS_KEY_ID='$ACCESS_KEY'
           export AWS_SECRET_ACCESS_KEY='$SECRET_ACCESS'
           export KUBECONFIG=config
-          kubectl create -f rds_conn_configmap.yaml
+          kubectl apply -f rds_conn_configmap.yaml
          """
       }
     stage('Create/update the Deployment') {
@@ -40,7 +40,7 @@ node {
           export AWS_SECRET_ACCESS_KEY='$SECRET_ACCESS'    
           sleep 20
           export KUBECONFIG=config
-          kubectl create -f service_wordpress.yaml
+          kubectl apply -f service_wordpress.yaml
          """
       }
     stage('Get the LB wordpress URL') {
