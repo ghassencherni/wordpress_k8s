@@ -27,7 +27,6 @@ spec:
              port: 80
              initialDelaySeconds: 5
              periodSeconds: 5
-             successThreshold: 1
         volumeMounts:
         - name: wordpress-persistent-storage
           mountPath: /var/www/html
