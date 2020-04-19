@@ -28,7 +28,7 @@ node {
       }
     stage('Create/update the Deployment') {
       sh """
-          export IMAGE_VERSION='$wordpress_image_version'
+          export IMAGE_VERSION='${wordpress_image_version}'
           export AWS_ACCESS_KEY_ID='$ACCESS_KEY'
           export AWS_SECRET_ACCESS_KEY='$SECRET_ACCESS'
           export KUBECONFIG=config
