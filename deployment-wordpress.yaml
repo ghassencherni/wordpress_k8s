@@ -21,6 +21,12 @@ spec:
             name: rds-conn
         ports:
         - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080        
+          initialDelaySeconds: 10  
+          periodSeconds: 2         
         volumeMounts:
         - name: wordpress-persistent-storage
           mountPath: /var/www/html
