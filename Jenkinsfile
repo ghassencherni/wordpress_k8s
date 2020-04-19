@@ -32,7 +32,7 @@ node {
           export AWS_ACCESS_KEY_ID='$ACCESS_KEY'
           export AWS_SECRET_ACCESS_KEY='$SECRET_ACCESS'
           export KUBECONFIG=config
-          envsubst < deployment.yaml | kubectl apply -f -
+          envsubst < deployment-wordpress.yaml | kubectl apply -f -
          """
       }
     stage('Create the LB Service') {
